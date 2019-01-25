@@ -1,0 +1,16 @@
+{
+  "name": "wordcamp-blocks",
+  "version": "1.0.0",
+  "description": "blocks for wordcamp",
+  "scripts": {
+    "build": "webpack"
+  },
+  "author": "",
+  "devDependencies": {
+    "@babel/core": "^7.2.2",
+    "@wordpress/babel-preset-default": "^3.0.2",
+    "babel-loader": "^8.0.5",
+    "webpack": "^4.29.0",
+    "webpack-cli": "^3.2.1"
+  }
+}
