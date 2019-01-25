@@ -1,2 +1,21 @@
-const message = <h1> Hola JSx </h1>
-console.log("hello world")
+const { registerBlockType } = wp.blocks
+const { createElement } = wp.element
+
+registerBlockType(
+    'wordcamp-blocks/fancy',
+    {
+        title: 'Fancy Wordcamp Block',
+        icon: 'smiley',
+        category: 'common',
+
+        // reacty
+        edit() {
+            return <h1> Hello  Editor </h1>
+        },
+
+        // not reacty
+        save()  {
+            return <h1> Hello Editor</h1> 
+        }
+    }
+)
