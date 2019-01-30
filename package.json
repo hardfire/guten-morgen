@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "blocks for wordcamp",
   "scripts": {
-    "build": "webpack"
+    "build": "webpack",
+    "dev": "webpack --watch"
   },
   "author": "",
   "devDependencies": {

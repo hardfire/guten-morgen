@@ -10,12 +10,12 @@ registerBlockType(
 
         // reacty
         edit() {
-            return <h1> Hello  Editor </h1>
+            return <h1> Hello Captain </h1>
         },
 
         // not reacty
         save()  {
-            return <h1> Hello Editor</h1> 
+            return <h1> Hello Captain </h1>
         }
     }
 )
