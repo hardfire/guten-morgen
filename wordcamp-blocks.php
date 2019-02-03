@@ -4,6 +4,23 @@
  * Desccription: Fancy Blocks, because it is wordcamp!!!
  */
 
+function wbl_register_post_type() {
+  $args = array(
+    'public' => true,
+    'label'  => 'Movies',
+    'show_in_rest' => true,
+    // wordpress black magic https://github.com/WordPress/gutenberg/issues/5622
+    'supports' => [
+      'title',
+      'editor',
+      'thumbnail',
+      'custom-fields',
+    ],
+  );
+  register_post_type( 'movie', $args );
+}
+add_action('init', 'wbl_register_post_type');
+
 function wbl_register_fancy_block() {
   wp_register_script(
     'wordcamp-blocks',
@@ -20,6 +37,16 @@ function wbl_register_fancy_block() {
     ]);
 }
 add_action('init', 'wbl_register_fancy_block');
+
+function wbl_register_meta() {
+    register_meta( 'post', 'release_date', array(
+        'show_in_rest' => true,
+        'single' => true,
+        'object_subtype' => 'movie',
+        'type' => 'number',
+    ) );
+}
+add_action( 'init', 'wbl_register_meta' );
 
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
