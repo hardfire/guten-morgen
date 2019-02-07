@@ -4,7 +4,9 @@ import PropTypes from "prop-types"
 const Movie = ({ movie }) => {
   return (
     <div>
-      {movie.name} - {movie.release_date}
+      <h2>
+        {movie.name} - <small>{movie.release_date}</small>
+      </h2>
     </div>
   )
 }
