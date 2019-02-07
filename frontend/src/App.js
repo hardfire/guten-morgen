@@ -16,7 +16,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    fetch("http://127.0.0.1:8000/index.php/wp-json/wp/v2/movie/")
+    fetch("/index.php/wp-json/wp/v2/movie/")
       .then(res => res.json())
       .then(result => {
         this.setState({
@@ -46,7 +46,7 @@ class App extends Component {
       <div>
         <Title title="Welcome WordCampers" />
         <Header />
-        <div class="container">
+        <div className="container">
           <Movie movie={movie} />
         </div>
         <Footer />
