@@ -3,6 +3,7 @@ import Header from "./Header"
 import Footer from "./Footer"
 import Title from "./Title"
 import Movie from "./Movie"
+import Loading from "./Loading"
 
 class App extends Component {
   constructor(props) {
@@ -19,10 +20,10 @@ class App extends Component {
       .then(res => res.json())
       .then(
         result => {
-          this.setState({
+          setTimeout(() => this.setState({
             isLoaded: true,
             movies: result
-          })
+          }), 2000)
         },
         error => {
           this.setState({
@@ -36,7 +37,7 @@ class App extends Component {
   render() {
     const { error, isLoaded, movies } = this.state
 
-    if (isLoaded === false) return "Loading"
+    if (isLoaded === false) return <Loading />
     if (error !== null) return "Welp! All Okay?"
 
     return (
@@ -45,7 +46,7 @@ class App extends Component {
         <Header />
         <div className="container">
           {movies.map(movie => (
-            <Movie key={movie.id} movie={transformMovie(movie)} />
+            <Movie key={movie.id} {...transformMovie(movie)} />
           ))}
         </div>
         <Footer />

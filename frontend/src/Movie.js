@@ -1,11 +1,11 @@
 import React from "react"
 import PropTypes from "prop-types"
 
-const Movie = ({ movie }) => {
+const Movie = ({ id, name, release_date }) => {
   return (
     <div>
       <h2>
-        {movie.name} - <small>{movie.release_date}</small>
+        {name} - <small>{release_date}</small>
       </h2>
     </div>
   )
