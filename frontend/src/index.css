@@ -43,3 +43,20 @@ a:hover {
   color: #fff;
   background: #49296a;
 }
+
+blockquote {
+  color: #49296a;
+  font-size:32px;
+  font-weight: bold;
+  background: #eee;
+  padding:40px;
+  border-left:4px solid #49296a;
+}
+blockquote p{
+  margin:0;
+}
+blockquote cite{
+  font-weight: normal;
+  color:#555;
+  font-size:18px;
+}

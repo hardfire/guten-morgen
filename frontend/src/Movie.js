@@ -13,11 +13,9 @@ const Movie = ({ id, name, release_date }) => {
 }
 
 Movie.propTypes = {
-  movie: PropTypes.shape({
-    id: PropTypes.number,
-    name: PropTypes.string,
-    release_date: PropTypes.number
-  })
+  id: PropTypes.number,
+  name: PropTypes.string,
+  release_date: PropTypes.number
 }
 
 export default Movie

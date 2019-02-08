@@ -3,14 +3,7 @@ import { BrowserRouter, Route } from "react-router-dom"
 import App from "./App"
 import Header from "./Header"
 import Footer from "./Footer"
-import Title from "./Title"
-
-const MovieDetail = ({ match }) => (
-  <div>
-    <Title title="New Movie" />
-    <h3>{match.params.movieId}</h3>
-  </div>
-)
+import MovieDetail from './MovieDetail'
 
 const Router = () => (
   <BrowserRouter>
