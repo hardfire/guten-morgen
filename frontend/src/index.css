@@ -33,3 +33,13 @@ footer {
   padding: 10px;
   max-width: 1000px;
 }
+
+a {
+  color: #49296a;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #fff;
+  background: #49296a;
+}

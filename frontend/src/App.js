@@ -1,6 +1,4 @@
 import React, { Component } from "react"
-import Header from "./Header"
-import Footer from "./Footer"
 import Title from "./Title"
 import Movie from "./Movie"
 import Loading from "./Loading"
@@ -20,10 +18,10 @@ class App extends Component {
       .then(res => res.json())
       .then(
         result => {
-          setTimeout(() => this.setState({
+          this.setState({
             isLoaded: true,
             movies: result
-          }), 2000)
+          })
         },
         error => {
           this.setState({
@@ -41,16 +39,14 @@ class App extends Component {
     if (error !== null) return "Welp! All Okay?"
 
     return (
-      <div>
+      <>
         <Title title="Welcome WordCampers" />
-        <Header />
         <div className="container">
           {movies.map(movie => (
             <Movie key={movie.id} {...transformMovie(movie)} />
           ))}
         </div>
-        <Footer />
-      </div>
+      </>
     )
   }
 }

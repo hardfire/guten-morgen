@@ -1,11 +1,12 @@
 import React from "react"
 import PropTypes from "prop-types"
+import { Link } from "react-router-dom"
 
 const Movie = ({ id, name, release_date }) => {
   return (
     <div>
       <h2>
-        {name} - <small>{release_date}</small>
+        <Link to={`/movie/${id}`}>{name}</Link> - <small>{release_date}</small>
       </h2>
     </div>
   )
