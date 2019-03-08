@@ -1,47 +1,36 @@
-import React, { Component } from "react"
+import React, { useState, useEffect } from "react"
 import Title from "./Title"
 import Loading from "./Loading"
 
-class MovieDetail extends Component{
-  constructor(props) {
-    super(props)
-    this.state = {
-      error: null,
-      isLoaded: false,
-      movie: null
-    }
-  }
+const MovieDetail = props => {
+  const [error, setError] = useState(null)
+  const [isLoaded, setIsLoaded] = useState(false)
+  const [movie, setMovie] = useState(null)
 
-  componentDidMount() {
-    fetch(`/index.php/wp-json/wp/v2/movie/${this.props.match.params.movieId}`)
+  useEffect(() => {
+    fetch(`/index.php/wp-json/wp/v2/movie/${props.match.params.movieId}`)
       .then(res => res.json())
       .then(
         result => {
-          this.setState({
-            isLoaded: true,
-            movie: result
-          })
+          setMovie(result)
+          setIsLoaded(true)
         },
         error => {
-          this.setState({
-            isLoaded: true,
-            error
-          })
+          setIsLoaded(true)
+          setError(error)
         }
       )
-  }
+  }, [])
 
-    render() {
-        const { error, isLoaded, movie } = this.state
+  if (isLoaded === false) return <Loading />
+  if (error !== null) return "Welp! All Okay?"
 
-        if (isLoaded === false) return <Loading />
-        if (error !== null) return "Welp! All Okay?"
-
-        return (<div>
-            <Title title={movie.title.rendered} />
-            <div dangerouslySetInnerHTML={{ __html : movie.content.rendered}} />
-        </div>)
-    }
+  return (
+    <div>
+      <Title title={movie.title.rendered} />
+      <div dangerouslySetInnerHTML={{ __html: movie.content.rendered }} />
+    </div>
+  )
 }
 
 export default MovieDetail

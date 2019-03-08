@@ -1,54 +1,41 @@
-import React, { Component } from "react"
+import React, { useState, useEffect } from "react"
 import Title from "./Title"
 import Movie from "./Movie"
 import Loading from "./Loading"
 
-class App extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      error: null,
-      isLoaded: false,
-      movies: []
-    }
-  }
+const App = () => {
+  const [error, setError] = useState(null)
+  const [isLoaded, setIsLoaded] = useState(false)
+  const [movies, setMovies] = useState([])
 
-  componentDidMount() {
+  useEffect(() => {
     fetch("/index.php/wp-json/wp/v2/movie/")
       .then(res => res.json())
       .then(
         result => {
-          this.setState({
-            isLoaded: true,
-            movies: result
-          })
+          setIsLoaded(true)
+          setMovies(result)
         },
         error => {
-          this.setState({
-            isLoaded: true,
-            error
-          })
+          setIsLoaded(true)
+          setError(error)
         }
       )
-  }
+  }, [])
 
-  render() {
-    const { error, isLoaded, movies } = this.state
+  if (isLoaded === false) return <Loading />
+  if (error !== null) return "Welp! All Okay?"
 
-    if (isLoaded === false) return <Loading />
-    if (error !== null) return "Welp! All Okay?"
-
-    return (
-      <>
-        <Title title="Welcome WordCampers" />
-        <div className="container">
-          {movies.map(movie => (
-            <Movie key={movie.id} {...transformMovie(movie)} />
-          ))}
-        </div>
-      </>
-    )
-  }
+  return (
+    <>
+      <Title title="Welcome WordCampers" />
+      <div className="container">
+        {movies.map(movie => (
+          <Movie key={movie.id} {...transformMovie(movie)} />
+        ))}
+      </div>
+    </>
+  )
 }
 
 const transformMovie = movie => {
