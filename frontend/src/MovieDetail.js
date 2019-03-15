@@ -8,7 +8,7 @@ const MovieDetail = props => {
   const [movie, setMovie] = useState(null)
 
   useEffect(() => {
-    fetch(`/index.php/wp-json/wp/v2/movie/${props.match.params.movieId}`)
+    fetch(`/response/${props.match.params.movieId}.json`)
       .then(res => res.json())
       .then(
         result => {

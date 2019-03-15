@@ -9,12 +9,18 @@ const App = () => {
   const [movies, setMovies] = useState([])
 
   useEffect(() => {
-    fetch("/index.php/wp-json/wp/v2/movie/")
+    fetch("response/all.json")
       .then(res => res.json())
       .then(
         result => {
           setIsLoaded(true)
-          setMovies(result)
+          setMovies(
+            result.sort((a, b) => {
+              return (
+                parseInt(a.meta.release_date) - parseInt(b.meta.release_date)
+              )
+            })
+          )
         },
         error => {
           setIsLoaded(true)
